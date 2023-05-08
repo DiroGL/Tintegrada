@@ -20,7 +20,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 	public MenuGUI() {
 
 		setTitle("DevelopersClub");
-		setSize(600, 500);
+		boxsize();
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -39,46 +39,11 @@ public class MenuGUI extends JFrame implements ActionListener {
 		btn9 = new JButton("Información de compañía a elegir");
 		btn10 = new JButton("Salir"); */
 		
-		btn1 = new JButton("Ver las compañias");
-		btn2 = new JButton("Ofertas de compañías");
-		btn3 = new JButton("Ordenar por precio ofertas");
-		btn4 = new JButton("Ordenar por duración de contrato");
-		btn5 = new JButton("Precios de líneas a contratar");
-		btn6 = new JButton("Buscar por megas");
-		btn7 = new JButton("Información de compañía a elegir");
-		btn8 = new JButton("Telefono fijo");
-		btn9 = new JButton("Información de forma de pago");
-		btn10 = new JButton("Salir");
+		Menu();
 
-		// Asignamos un ActionListener a cada botón
-		btn1.addActionListener(this);
-		btn2.addActionListener(this);
-		btn3.addActionListener(this);
-		btn4.addActionListener(this);
-		btn5.addActionListener(this);
-		btn6.addActionListener(this);
-		btn7.addActionListener(this);
-		btn8.addActionListener(this);
-		btn9.addActionListener(this);
-		btn10.addActionListener(this);
-
-		// Añadimos los botones al panel principal
-		panelPrincipal.add(btn1);
-		panelPrincipal.add(btn2);
-		panelPrincipal.add(btn3);
-		panelPrincipal.add(btn4);
-		panelPrincipal.add(btn5);
-		panelPrincipal.add(btn6);
-		panelPrincipal.add(btn7);
-		panelPrincipal.add(btn8);
-		panelPrincipal.add(btn9);
-		panelPrincipal.add(btn10);
-
-		// Añadimos el panel principal al JFrame
-		getContentPane().add(panelPrincipal);
-
-		// Hacemos visible la interfaz gráfica
-		setVisible(true);
+	
+	
+		
 	}
 
 	// Método que se ejecuta al hacer clic en algún botón
@@ -86,11 +51,12 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 		JLabel ptn1, ptn2, ptn3, ptn4, ptn5, ptn6, ptn7, ptn8;
 		JButton sal;
+		Vector<oferta> comp = new Vector<oferta>();
 		if (e.getSource() == btn1) {
-
+			boxsize();
 			JPanel panelcaso1 = new JPanel(new GridLayout(8, 1));
 			setTitle("Compañías");
-			setSize(600, 450);
+			
 
 			ptn1 = new JLabel("- Jazztel");
 			ptn2 = new JLabel("- MasMovil");
@@ -124,9 +90,9 @@ public class MenuGUI extends JFrame implements ActionListener {
 		} else if (e.getSource() == btn2) {
 			JPanel panelcaso2 = new JPanel(new GridLayout(9, 1));
 			setTitle("Precios ordenados en su máxima tarifa");
-			setSize(600, 500);
+			boxsize();
 
-			Vector<oferta> comp = new Vector<oferta>();
+	
 
 			comp = bd.MostrarComp();
 			//Collections.sort(comp,new OrdenarPrecio());
@@ -183,9 +149,8 @@ public class MenuGUI extends JFrame implements ActionListener {
 		} else if (e.getSource() == btn3) {
 			JPanel panelcaso2 = new JPanel(new GridLayout(9, 1));
 			setTitle("Precios ordenados en su máxima tarifa");
-			setSize(600, 500);
+			boxsize();
 
-			Vector<oferta> comp = new Vector<oferta>();
 
 			comp = bd.MostrarComp();
 			Collections.sort(comp,new OrdenarPrecio());
@@ -243,8 +208,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 		} else if (e.getSource() == btn4) {
 			JPanel panelcaso4 = new JPanel(new GridLayout(9, 1));
 			setTitle("Compañías ordenadas en su máximo contrato");
-			setSize(600, 500);
-
+			boxsize();
 			ptn1 = new JLabel("- Compañias-----");
 			ptn2 = new JLabel("- Pepephone-----Duración: 0 años");
 			ptn3 = new JLabel("- Vodafone------Duración: 1 año");
@@ -285,8 +249,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 			JPanel panelcaso5 = new JPanel(new GridLayout(8, 1));
 			setTitle("Seleccione compañía");
-			setSize(600, 500);
-
+			boxsize();
 			btn1 = new JButton("Movistar");
 			btn2 = new JButton("Pepephone");
 			btn3 = new JButton("Yoigo");
@@ -330,7 +293,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso5_1 = new JPanel(new GridLayout(9, 1));
 					setTitle("Movistar");
-					setSize(600, 450);
+					boxsize();
 					JLabel ptn31, ptn32, ptn33, ptn34, ptn35, ptn36, ptn37, ptn38;
 					JButton sal1;
 
@@ -466,7 +429,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso5_4 = new JPanel(new GridLayout(6, 1));
 					setTitle("Jazztel");
-					setSize(800, 450);
+					boxsize();
 					JLabel ptn31, ptn32, ptn33, ptn34, ptn35;
 					JButton sal1;
 
@@ -510,7 +473,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso5_5 = new JPanel(new GridLayout(4, 1));
 					setTitle("Orange");
-					setSize(800, 450);
+					boxsize();
 					JLabel ptn31, ptn32, ptn33;
 					JButton sal1;
 
@@ -549,7 +512,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso5_6 = new JPanel(new GridLayout(5, 1));
 					setTitle("Vodafone");
-					setSize(800, 450);
+					boxsize();
 					JLabel ptn31, ptn32, ptn33, ptn34;
 					JButton sal1;
 
@@ -593,7 +556,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 			JPanel panelcaso3 = new JPanel(new GridLayout(6, 1));
 			setTitle("Seleccione el número de megas");
-			setSize(600, 500);
+			boxsize();
 
 			btn1 = new JButton("300 megas");
 			btn2 = new JButton("500 megas");
@@ -669,7 +632,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso3_2 = new JPanel(new GridLayout(3, 1));
 					setTitle("500 Megas");
-					setSize(600, 450);
+					boxsize();
 					JLabel ptn31, ptn32;
 					JButton sal1;
 
@@ -702,7 +665,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso3_3 = new JPanel(new GridLayout(6, 1));
 					setTitle("600 Megas");
-					setSize(600, 450);
+					boxsize();
 					JLabel ptn31, ptn32, ptn33, ptn34, ptn35;
 					JButton sal1;
 
@@ -742,7 +705,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso3_4 = new JPanel(new GridLayout(2, 1));
 					setTitle("800 Megas");
-					setSize(600, 450);
+					boxsize();
 					JLabel ptn31;
 					JButton sal1;
 
@@ -773,7 +736,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				public void actionPerformed(ActionEvent e) {
 					JPanel panelcaso3_5 = new JPanel(new GridLayout(7, 1));
 					setTitle("1 Giga");
-					setSize(600, 450);
+					boxsize();
 					JLabel ptn31, ptn32, ptn33, ptn34, ptn35, ptn36;
 					JButton sal1;
 
@@ -828,26 +791,29 @@ public class MenuGUI extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		new MenuGUI();
 	}
+	
+	public void boxsize() {
+		setSize(1920, 1080);
+	}
 
 	public void Menu() {
 		setTitle("Menu de opciones");
-		setSize(600, 500);
+		boxsize();
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// Creamos el panel principal
 		JPanel panelPrincipal = new JPanel(new GridLayout(10, 1));
 
-		// Creamos los botones de la interfaz
 		btn1 = new JButton("Ver las compañias");
-		btn2 = new JButton("Ordenar por precio");
-		btn3 = new JButton("Buscar entre rango de precios");
+		btn2 = new JButton("Ofertas de compañías");
+		btn3 = new JButton("Ordenar por precio ofertas");
 		btn4 = new JButton("Ordenar por duración de contrato");
-		btn5 = new JButton("Información de forma de pago");
-		btn6 = new JButton("Precios de líneas a contratar");
-		btn7 = new JButton("Ofertas de compañías");
+		btn5 = new JButton("Precios de líneas a contratar");
+		btn6 = new JButton("Buscar por megas");
+		btn7 = new JButton("Información de compañía a elegir");
 		btn8 = new JButton("Telefono fijo");
-		btn9 = new JButton("Imformación de compañía a elegir");
+		btn9 = new JButton("Información de forma de pago");
 		btn10 = new JButton("Salir");
 
 		// Asignamos un ActionListener a cada botón
@@ -874,11 +840,13 @@ public class MenuGUI extends JFrame implements ActionListener {
 		panelPrincipal.add(btn9);
 		panelPrincipal.add(btn10);
 
+	
 		// Añadimos el panel principal al JFrame
 		getContentPane().add(panelPrincipal);
 
 		// Hacemos visible la interfaz gráfica
 		setVisible(true);
+		
 	}
 
 	public void Menu3() {
@@ -886,7 +854,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 		JPanel panelcaso3 = new JPanel(new GridLayout(6, 1));
 		setTitle("Seleccione el número de megas");
-		setSize(600, 500);
+		setSize(1920, 1080);
 
 		btn1 = new JButton("300 megas");
 		btn2 = new JButton("500 megas");

@@ -24,9 +24,7 @@ public class BD_Tintegrada extends BD_Conector {
 			s = c.createStatement();
 			reg = s.executeQuery(cadena);
 			while (reg.next()) {
-
-				comp.add(new oferta(reg.getString(1), reg.getInt(2), reg.getDouble(3), reg.getInt(4), reg.getString(5),
-						reg.getInt(6), reg.getInt(7), reg.getInt(8)));
+				comp.add(new oferta(reg.getString(1), reg.getInt(2), reg.getDouble(3), reg.getInt(4), reg.getString(5), reg.getInt(6), reg.getInt(7), reg.getInt(8)));
 			}
 			s.close();
 			this.cerrar();

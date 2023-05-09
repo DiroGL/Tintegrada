@@ -17,12 +17,12 @@ public class BD_Tintegrada extends BD_Conector {
 
 	public Vector<oferta> MostrarComp() {
 		Vector<oferta> comp = new Vector<oferta>();
-		String cadena = "SELECT * FROM ofertas";
+		String sentenciaSQL = "SELECT * FROM ofertas";
 
 		try {
 			this.abrir();
 			s = c.createStatement();
-			reg = s.executeQuery(cadena);
+			reg = s.executeQuery(sentenciaSQL);
 			while (reg.next()) {
 				comp.add(new oferta(reg.getString(1), reg.getInt(2), reg.getDouble(3), reg.getInt(4), reg.getString(5), reg.getInt(6), reg.getInt(7), reg.getInt(8)));
 			}
@@ -31,6 +31,7 @@ public class BD_Tintegrada extends BD_Conector {
 			return comp;
 		} catch (SQLException e) {
 			this.cerrar();
+			System.out.println("HA HABIDO UN ERROR");
 			return null;
 		}
 

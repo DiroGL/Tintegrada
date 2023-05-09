@@ -18,7 +18,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 	private String compañias[] = { "Jazztel", "MasMovil", "Movistar", "Orange", "Pepephone", "Vodaphone", "Yoigo" };
 	BD_Tintegrada bd = new BD_Tintegrada("tintegrada");
-
+	Vector<oferta> comp = new Vector<oferta>();
 	public MenuGUI() {
 
 		setTitle("DevelopersClub");
@@ -96,8 +96,15 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == btn2) {
 			JPanel panelcaso2 = new JPanel(new GridLayout(9, 1));
+<<<<<<< Updated upstream
 			setTitle("Ofertas De las compañias");
 			boxsize();
+=======
+			setTitle("Precios ordenados en su máxima tarifa");
+			setSize(600, 500);
+
+			
+>>>>>>> Stashed changes
 
 			comp = bd.MostrarComp();
 			//Collections.sort(comp, new OrdenarPrecio());

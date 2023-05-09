@@ -31,12 +31,6 @@ public class oferta{
 
 
 
-	public int getPremanencia() {
-		return premanencia;
-	}
-
-
-
 	public double getPrecio() {
 		return precio;
 	}

@@ -9,8 +9,6 @@ import java.util.*;
 
 import bbdd.*;
 import Modelos.*;
-import Orden.*;
-
 
 public class MenuGUI extends JFrame implements ActionListener {
 
@@ -92,11 +90,20 @@ public class MenuGUI extends JFrame implements ActionListener {
 			sal = new JButton("- Salida");
 			sal.addActionListener(this);
 			panelcaso1.add(sal);
-			Limpieza(panelcaso1, sal);
-
+			getContentPane().removeAll();
+			getContentPane().revalidate();
+			getContentPane().repaint();
+			getContentPane().add(panelcaso1);
+			setVisible(true);
+			sal.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					getContentPane().removeAll();
+					Menu();
+				}
+			});
 		} else if (e.getSource() == btn2) {
 			JPanel panelcaso2 = new JPanel(new GridLayout(9, 1));
-			setTitle("Ofertas De las compañias");
+			setTitle("Precios ordenados en su máxima tarifa");
 			boxsize();
 
 			comp = bd.MostrarComp();
@@ -142,27 +149,42 @@ public class MenuGUI extends JFrame implements ActionListener {
 			Limpieza(panelcaso2, sal);
 
 		} else if (e.getSource() == btn4) {
-			JPanel panelcaso2 = new JPanel(new GridLayout(9, 1));
-			setTitle("Precios ordenados de las ofertas por Permanencia");
+			JPanel panelcaso4 = new JPanel(new GridLayout(9, 1));
+			setTitle("Compañías ordenadas en su máximo contrato");
 			boxsize();
-
-			comp = bd.MostrarComp();
-			Collections.sort(comp, new OrdenarPermanencia());
-
-			Vector<JLabel> botones = new Vector<JLabel>();
-			for (int i = 0; i < comp.size(); i++) {
-				botones.add(i, new JLabel(comp.get(i).toString()));
-			}
-			ptn8 = new JLabel(" COMPAÑIAS: ");
-			panelcaso2.add(ptn8);
-			for (int i = 0; i < botones.size(); i++) {
-				panelcaso2.add(botones.get(i));
-			}
+			ptn1 = new JLabel("- Compañias-----");
+			ptn2 = new JLabel("- Pepephone-----Duración: 0 años");
+			ptn3 = new JLabel("- Vodafone------Duración: 1 año");
+			ptn4 = new JLabel("- Jazztel-------Duración: 1 año / 2 años");
+			ptn5 = new JLabel("- MasMovil------Duración: 1 año / 2 años");
+			ptn6 = new JLabel("- Movistar------Duración: 2 años");
+			ptn7 = new JLabel("- Orange--------Duración: 2 años");
+			ptn8 = new JLabel("- Yoigo---------Duración: 2 años");
 			sal = new JButton("- Salida");
 
+			panelcaso4.add(ptn1);
+			panelcaso4.add(ptn2);
+			panelcaso4.add(ptn3);
+			panelcaso4.add(ptn4);
+			panelcaso4.add(ptn5);
+			panelcaso4.add(ptn6);
+			panelcaso4.add(ptn7);
+			panelcaso4.add(ptn8);
 			sal.addActionListener(this);
-			panelcaso2.add(sal);
-			Limpieza(panelcaso2, sal);
+			panelcaso4.add(sal);
+			getContentPane().removeAll();
+			getContentPane().revalidate();
+			getContentPane().repaint();
+			getContentPane().add(panelcaso4);
+			pack();
+			setVisible(true);
+			sal.addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent e) {
+					getContentPane().removeAll();
+					Menu();
+				}
+			});
 
 		} else if (e.getSource() == btn5) {
 
@@ -747,11 +769,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 		btn7.addActionListener(this);
 		btn8.addActionListener(this);
 		btn9.addActionListener(this);
-		btn10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
+		btn10.addActionListener(this);
 
 		// Añadimos los botones al panel principal
 		panelPrincipal.add(btn1);

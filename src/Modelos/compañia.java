@@ -12,6 +12,10 @@ public class compañia {
 		this.forma_de_pago = forma_de_pago;
 		this.telefono = telefono;
 	}
+	public String getNombre() {
+		return nombre;
+	}
+	
 	
 	
 }

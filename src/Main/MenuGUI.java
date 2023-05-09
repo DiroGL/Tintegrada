@@ -28,52 +28,66 @@ public class MenuGUI extends JFrame implements ActionListener {
 		JPanel panelPrincipal = new JPanel(new GridLayout(10, 1));
 
 		// Creamos los botones de la interfaz
-		/*btn1 = new JButton("Ver las compañias");
-		btn2 = new JButton("Ordenar por precio");
-		btn3 = new JButton("Buscar por megas");
-		btn4 = new JButton("Ordenar por duración de contrato");
-		btn5 = new JButton("Información de forma de pago");
-		btn6 = new JButton("Precios de líneas a contratar");
-		btn7 = new JButton("Ofertas de compañías");
-		btn8 = new JButton("Telefono fijo");
-		btn9 = new JButton("Información de compañía a elegir");
-		btn10 = new JButton("Salir"); */
-		
+		/*
+		 * btn1 = new JButton("Ver las compañias"); btn2 = new
+		 * JButton("Ordenar por precio"); btn3 = new JButton("Buscar por megas"); btn4 =
+		 * new JButton("Ordenar por duración de contrato"); btn5 = new
+		 * JButton("Información de forma de pago"); btn6 = new
+		 * JButton("Precios de líneas a contratar"); btn7 = new
+		 * JButton("Ofertas de compañías"); btn8 = new JButton("Telefono fijo"); btn9 =
+		 * new JButton("Información de compañía a elegir"); btn10 = new
+		 * JButton("Salir");
+		 */
+
+		/*
+		 * btn1 = new JButton("Ver las compañias"); btn2 = new
+		 * JButton("Ofertas de compañías"); btn3 = new
+		 * JButton("Ordenar por precio ofertas"); btn4 = new
+		 * JButton("Ordenar por duración de contrato"); btn5 = new
+		 * JButton("Precios de líneas a contratar"); btn6 = new
+		 * JButton("Buscar por megas"); btn7 = new
+		 * JButton("Información de compañía a elegir"); btn8 = new
+		 * JButton("Telefono fijo"); btn9 = new JButton("Información de forma de pago");
+		 * btn10 = new JButton("Salir");
+		 */
 		Menu();
 
-	
-	
-		
 	}
 
 	// Método que se ejecuta al hacer clic en algún botón
 	public void actionPerformed(ActionEvent e) {
 
-		JLabel ptn1, ptn2, ptn3, ptn4, ptn5, ptn6, ptn7, ptn8;
+		JLabel ptn1 = null, ptn2 = null, ptn3 = null, ptn4 = null, ptn5 = null, ptn6 = null, ptn7 = null, ptn8 = null;
 		JButton sal;
 		Vector<oferta> comp = new Vector<oferta>();
+		Vector<compañia> compa = new Vector<compañia>();
 		if (e.getSource() == btn1) {
 			boxsize();
 			JPanel panelcaso1 = new JPanel(new GridLayout(8, 1));
 			setTitle("Compañías");
-			
+			/*
+			 * botones.add(ptn1); botones.add(ptn2); botones.add(ptn3); botones.add(ptn4);
+			 * botones.add(ptn5); botones.add(ptn7); botones.add(ptn8);
+			 */
+			compa = bd.ListarComp();
+			Vector<JLabel> botones = new Vector<JLabel>();
+			for (int i = 0; i < compa.size(); i++) {
+				// botones.set(i,new JLabel (compa.get(i).getNombre()));
+				botones.add(i, new JLabel(compa.get(i).getNombre()));
+			}
 
-			ptn1 = new JLabel("- Jazztel");
-			ptn2 = new JLabel("- MasMovil");
-			ptn3 = new JLabel("- Movistar");
-			ptn4 = new JLabel("- Orange");
-			ptn5 = new JLabel("- Pepephone");
-			ptn6 = new JLabel("- Vodafone");
-			ptn7 = new JLabel("- Yoigo");
+			/*
+			 * ptn1 = new JLabel("- Jazztel"); ptn2 = new JLabel("- MasMovil"); ptn3 = new
+			 * JLabel("- Movistar"); ptn4 = new JLabel("- Orange"); ptn5 = new
+			 * JLabel("- Pepephone"); ptn6 = new JLabel("- Vodafone"); ptn7 = new
+			 * JLabel("- Yoigo");
+			 * 
+			 */
+			for (int i = 0; i < botones.size(); i++) {
+				panelcaso1.add(botones.get(i));
+			}
+
 			sal = new JButton("- Salida");
-
-			panelcaso1.add(ptn1);
-			panelcaso1.add(ptn2);
-			panelcaso1.add(ptn3);
-			panelcaso1.add(ptn4);
-			panelcaso1.add(ptn5);
-			panelcaso1.add(ptn6);
-			panelcaso1.add(ptn7);
 			sal.addActionListener(this);
 			panelcaso1.add(sal);
 			getContentPane().removeAll();
@@ -92,119 +106,48 @@ public class MenuGUI extends JFrame implements ActionListener {
 			setTitle("Precios ordenados en su máxima tarifa");
 			boxsize();
 
-	
-
 			comp = bd.MostrarComp();
-			//Collections.sort(comp,new OrdenarPrecio());
-			
-			ptn8 = new JLabel(
-					" COMPAÑIAS: ");
+			//Collections.sort(comp, new OrdenarPrecio());
+
+			Vector<JLabel> botones = new Vector<JLabel>();
+			for (int i = 0; i < comp.size(); i++) {
+				botones.add(i, new JLabel(comp.get(i).toString()));
+			}
+			ptn8 = new JLabel(" COMPAÑIAS: ");
 			panelcaso2.add(ptn8);
-			if (comp.size() > 0) {
-				ptn1 = new JLabel(comp.get(0).toString());
-				panelcaso2.add(ptn1);
-			}
-			if (comp.size() > 1) {
-				ptn2 = new JLabel(comp.get(1).toString());
-				panelcaso2.add(ptn2);
-			}
-			if (comp.size() > 2) {
-				ptn3 = new JLabel(comp.get(2).toString());
-				panelcaso2.add(ptn3);
-			}
-			if (comp.size() > 3) {
-				ptn4 = new JLabel(comp.get(3).toString());
-				panelcaso2.add(ptn4);
-			}
-			if (comp.size() > 4) {
-				ptn5 = new JLabel(comp.get(4).toString());
-				panelcaso2.add(ptn5);
-			}
-			if (comp.size() > 5) {
-				ptn6 = new JLabel(comp.get(5).toString());
-				panelcaso2.add(ptn6);
-			}
-			if (comp.size() > 6) {
-				ptn7 = new JLabel(comp.get(6).toString());
-				panelcaso2.add(ptn7);
+			for (int i = 0; i < botones.size(); i++) {
+				panelcaso2.add(botones.get(i));
 			}
 			sal = new JButton("- Salida");
 
 			sal.addActionListener(this);
 			panelcaso2.add(sal);
-			getContentPane().removeAll();
-			getContentPane().revalidate();
-			getContentPane().repaint();
-			getContentPane().add(panelcaso2);
-			pack();
-			setVisible(true);
-			sal.addActionListener(new ActionListener() {
-
-				public void actionPerformed(ActionEvent e) {
-					getContentPane().removeAll();
-					Menu();
-				}
-			});
+			Limpieza(panelcaso2, sal);
 
 		} else if (e.getSource() == btn3) {
 			JPanel panelcaso2 = new JPanel(new GridLayout(9, 1));
 			setTitle("Precios ordenados en su máxima tarifa");
 			boxsize();
 
-
 			comp = bd.MostrarComp();
-			Collections.sort(comp,new OrdenarPrecio());
-			
-			ptn8 = new JLabel(
-					" COMPAÑIAS: ");
+			Collections.sort(comp, new OrdenarPrecio());
+
+			Vector<JLabel> botones = new Vector<JLabel>();
+			for (int i = 0; i < comp.size(); i++) {
+				// botones.set(i,new JLabel (compa.get(i).getNombre()));
+				botones.add(i, new JLabel(comp.get(i).toString()));
+			}
+			ptn8 = new JLabel(" COMPAÑIAS: ");
 			panelcaso2.add(ptn8);
-			if (comp.size() > 0) {
-				ptn1 = new JLabel(comp.get(0).toString());
-				panelcaso2.add(ptn1);
-			}
-			if (comp.size() > 1) {
-				ptn2 = new JLabel(comp.get(1).toString());
-				panelcaso2.add(ptn2);
-			}
-			if (comp.size() > 2) {
-				ptn3 = new JLabel(comp.get(2).toString());
-				panelcaso2.add(ptn3);
-			}
-			if (comp.size() > 3) {
-				ptn4 = new JLabel(comp.get(3).toString());
-				panelcaso2.add(ptn4);
-			}
-			if (comp.size() > 4) {
-				ptn5 = new JLabel(comp.get(4).toString());
-				panelcaso2.add(ptn5);
-			}
-			if (comp.size() > 5) {
-				ptn6 = new JLabel(comp.get(5).toString());
-				panelcaso2.add(ptn6);
-			}
-			if (comp.size() > 6) {
-				ptn7 = new JLabel(comp.get(6).toString());
-				panelcaso2.add(ptn7);
+			for (int i = 0; i < botones.size(); i++) {
+				panelcaso2.add(botones.get(i));
 			}
 			sal = new JButton("- Salida");
 
 			sal.addActionListener(this);
 			panelcaso2.add(sal);
-			getContentPane().removeAll();
-			getContentPane().revalidate();
-			getContentPane().repaint();
-			getContentPane().add(panelcaso2);
-			pack();
-			setVisible(true);
-			sal.addActionListener(new ActionListener() {
+			Limpieza(panelcaso2, sal);
 
-				public void actionPerformed(ActionEvent e) {
-					getContentPane().removeAll();
-					Menu();
-				}
-			});
-
-			
 		} else if (e.getSource() == btn4) {
 			JPanel panelcaso4 = new JPanel(new GridLayout(9, 1));
 			setTitle("Compañías ordenadas en su máximo contrato");
@@ -791,7 +734,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		new MenuGUI();
 	}
-	
+
 	public void boxsize() {
 		setSize(1920, 1080);
 	}
@@ -840,13 +783,12 @@ public class MenuGUI extends JFrame implements ActionListener {
 		panelPrincipal.add(btn9);
 		panelPrincipal.add(btn10);
 
-	
 		// Añadimos el panel principal al JFrame
 		getContentPane().add(panelPrincipal);
 
 		// Hacemos visible la interfaz gráfica
 		setVisible(true);
-		
+
 	}
 
 	public void Menu3() {
@@ -884,6 +826,22 @@ public class MenuGUI extends JFrame implements ActionListener {
 		pack();
 		setVisible(true);
 		sal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().removeAll();
+				Menu();
+			}
+		});
+	}
+
+	public void Limpieza(JPanel panelcaso2, JButton sal) {
+		getContentPane().removeAll();
+		getContentPane().revalidate();
+		getContentPane().repaint();
+		getContentPane().add(panelcaso2);
+		pack();
+		setVisible(true);
+		sal.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().removeAll();
 				Menu();

@@ -35,5 +35,25 @@ public class BD_Tintegrada extends BD_Conector {
 		}
 
 	}
+	public Vector<compañia> ListarComp() {
+		Vector<compañia> compa = new Vector<compañia>();
+		String cadena = "SELECT * FROM compañias";
+
+		try {
+			this.abrir();
+			s = c.createStatement();
+			reg = s.executeQuery(cadena);
+			while (reg.next()) {
+				compa.add(new compañia(reg.getString(1),reg.getString(2),reg.getString(3),reg.getInt(4)));
+			}
+			s.close();
+			this.cerrar();
+			return compa;
+		} catch (SQLException e) {
+			this.cerrar();
+			return null;
+		}
+
+	}
 
 }

@@ -156,40 +156,10 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == btn6) {
 
-			JPanel panelBusqueda = new JPanel(new GridLayout(4, 1));
-			setTitle("Seleccione el número de megas");
-			boxsize();
-			Vector<JTextField> text= menubusqueda(panelBusqueda);
 			
-
-			JButton botonBusqueda = new JButton("Buscar");
-			panelBusqueda.add(botonBusqueda);
-			botonBusqueda.addActionListener(new ActionListener(){
-	          
-	        	 
-	        	 String textoBusqueda = text.get(0).getText();
-	        	 String textoBusqueda2 = text.get(1).getText();
-				public void actionPerformed(ActionEvent e) {
-					Vector<oferta> bus = bd.BusquedaMegas(textoBusqueda, textoBusqueda2);
-					JPanel panelBusqueda = new JPanel(new GridLayout(bus.size(), 1));
-					setTitle("Aqui se muestran lso megas entre " + textoBusqueda + " y " + textoBusqueda2);
-					boxsize();
-					Vector<JLabel> ofer = new Vector<JLabel>();
-					for (int i = 0; i < bus.size(); i++) {
-						ofer.add(new JLabel (bus.get(i).toString()));
-					}
-					
-					for (int i = 0; i < ofer.size(); i++) {
-						panelBusqueda.add(ofer.get(i));
-					}
-					VolverAtras(panelBusqueda, sal);
-					
-					
-					
-				}
-	        });
-	       
-			Limpieza(panelBusqueda, sal);
+			menubusqueda(sal);
+			
+			
 		} else if (e.getSource() == btn7) {
 			System.out.println("Opc 7");
 		} else if (e.getSource() == btn8) {
@@ -268,11 +238,16 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 	}
 
-	public Vector<JTextField> menubusqueda(JPanel panelBusqueda) {
+	public void menubusqueda(JButton sal) {
+		JPanel panelBusqueda = new JPanel(new GridLayout(4, 1));
 		JLabel part1 = new JLabel("Introduzca el minimo de megas"); 
+		boxsize();
 		panelBusqueda.add(part1);
 		Vector<JTextField> text = new Vector<JTextField>();
 		
+		
+		
+		setTitle("Seleccione el número de megas");
 		// Caja de texto de búsqueda
 		JTextField cajaTexto = new JTextField();
 		cajaTexto.setPreferredSize(new Dimension(300, 30));
@@ -287,9 +262,39 @@ public class MenuGUI extends JFrame implements ActionListener {
 		cajaTexto.setPreferredSize(new Dimension(300, 30));
 		panelBusqueda.add(cajaTexto2, BorderLayout.CENTER);
 		text.add(cajaTexto2);
-		JOptionPane.showMessageDialog(null, text.get(0).getText());
-		return text;
 		
+	
+		JButton botonBusqueda = new JButton("Buscar");
+		panelBusqueda.add(botonBusqueda);
+		
+      	sal = new JButton("Salida");
+		botonBusqueda.addActionListener(new ActionListener(){
+       	 
+       	 
+			public void actionPerformed(ActionEvent e) {
+				String textoBusqueda = cajaTexto.getText();
+		      	String textoBusqueda2 = cajaTexto2.getText();
+		      	
+				Vector<oferta> bus = bd.BusquedaMegas(textoBusqueda, textoBusqueda2);
+				JPanel panelBusqueda = new JPanel(new GridLayout(bus.size()+1, 1));
+				setTitle("Aqui se muestran los megas entre " + textoBusqueda + " y " + textoBusqueda2);
+				boxsize();
+				Vector<JLabel> ofer = new Vector<JLabel>();
+				for (int i = 0; i < bus.size(); i++) {
+					ofer.add(new JLabel (bus.get(i).toString()));
+				}
+				
+				for (int i = 0; i < ofer.size(); i++) {
+					panelBusqueda.add(ofer.get(i));
+				}
+				JButton salida=new JButton("<- Atras");
+				VolverAtras(panelBusqueda, salida );
+				
+				
+				
+			}
+       });
+		Limpieza(panelBusqueda, sal);
 	}
 
 	public void Limpieza(JPanel panelcaso2, JButton sal) {
@@ -322,7 +327,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 			public void actionPerformed(ActionEvent e) {
 				getContentPane().removeAll();
-				menubusqueda(panelcaso2);
+				menubusqueda(sal);
 			}
 		});
 	}

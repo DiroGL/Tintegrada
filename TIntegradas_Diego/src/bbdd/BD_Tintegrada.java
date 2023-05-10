@@ -75,12 +75,12 @@ public class BD_Tintegrada extends BD_Conector {
 		}
 
 	}
-	public Vector<oferta> BusquedaMegas(String megasmax, String megasmin) {
+	public Vector<oferta> BusquedaMegas(String megasmin, String megasmax) {
 		
-		if (megasmax == null) {
+		if (megasmax.equalsIgnoreCase("")) {
 			megasmax = "100000000";
 		}
-		if (megasmin == null) {
+		if (megasmin.equalsIgnoreCase("")) {
 			megasmin = "0";
 		}
 		String cadena = "SELECT * FROM ofertas WHERE Nmegas BETWEEN " + Integer.parseInt(megasmin) +" and " + Integer.parseInt(megasmax);

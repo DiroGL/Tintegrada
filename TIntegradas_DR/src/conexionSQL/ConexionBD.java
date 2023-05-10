@@ -10,11 +10,10 @@ public class ConexionBD {
 	
 	/*Instancia de la conexion al iniciar el programa*/
 	public ConexionBD(String bbdd) {
-
 		base= bbdd;
 		usuario = "root";
-		pass = "accesodatos";
-		url = "jdbc:mysql://localhost:8080/"+base;
+		pass = "password";
+		url = "jdbc:mysql://localhost/"+base;
 		
 	}
 	

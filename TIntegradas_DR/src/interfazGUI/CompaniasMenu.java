@@ -49,7 +49,7 @@ public class CompaniasMenu {
  
     public CompaniasMenu() {
         initialize();
-        conexionBD = new ConexionBD("tintegrador");
+        conexionBD = new ConexionBD("tintegrada");
     }
 
     /**

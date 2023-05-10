@@ -14,12 +14,12 @@ public class CompaniaDAO{
 	ConexionBD conexionBD;
 	public CompaniaDAO() {
     	//New Pull
-    	conexionBD = new ConexionBD("tintegrada");    
+    		conexionBD = new ConexionBD("tintegrada");    
     	}
 
     public boolean agregarCompania(Compañias compania) { 
         try {
-            String query = "INSERT INTO companias (coberturas,formaPago,Ncom,telcom) VALUES (?, ?, ?,?)";
+            String query = "INSERT INTO compañias (cobertura,formaPago,Ncom,telcom) VALUES (?, ?, ?,?)";
                
             PreparedStatement statement = conexionBD.abrirConexion().prepareStatement(query);
             statement.setString(1, compania.getCoberturas());
@@ -48,7 +48,7 @@ public class CompaniaDAO{
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                String coberturas = resultSet.getString("coberturas");
+                String coberturas = resultSet.getString("cobertura");
                 String formaPago = resultSet.getString("formaPago");
                 String Ncom = resultSet.getString("Ncom");
                 String telcom = resultSet.getString("telcom");
@@ -68,7 +68,7 @@ public class CompaniaDAO{
 
     public boolean actualizarCompania(String nombreAnterior, Compañias companiaNueva) {
         try {
-            String query = "UPDATE companias SET Coberturas=?, FormaPago=?, NCom=?,TelCom=? WHERE nombre=?";
+            String query = "UPDATE compañias SET cobertura=?, FormaPago=?, NCom=?,TelCom=? WHERE nombre=?";
             PreparedStatement statement = conexionBD.abrirConexion().prepareStatement(query);
             statement.setString(1, companiaNueva.getCoberturas());
             statement.setString(2, companiaNueva.getFormaPago());
@@ -91,7 +91,7 @@ public class CompaniaDAO{
         List<Compañias> companias = new ArrayList<>();
 
         try {
-            String query = "SELECT * FROM companias WHERE nombre LIKE ?";
+            String query = "SELECT * FROM compañias WHERE nombre LIKE ?";
             PreparedStatement statement = conexionBD.abrirConexion().prepareStatement(query);
             statement.setString(1, "%" + filtro + "%");
 

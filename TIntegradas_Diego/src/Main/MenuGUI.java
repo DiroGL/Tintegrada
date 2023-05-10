@@ -42,7 +42,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 		if (e.getSource() == btn1) {
 			boxsize();
 			compa = bd.ListarComp();
-			JPanel panelcaso1 = new JPanel(new GridLayout(compa.size()+1, 0));
+			JPanel panelcaso1 = new JPanel(new GridLayout(compa.size() + 1, 0));
 			Vector<JLabel> botones = new Vector<JLabel>();
 			for (int i = 0; i < compa.size(); i++) {
 				botones.add(i, new JLabel(compa.get(i).getNombre()));
@@ -57,12 +57,12 @@ public class MenuGUI extends JFrame implements ActionListener {
 			Limpieza(panelcaso1, sal);
 
 		} else if (e.getSource() == btn2) {
-			
+
 			setTitle("Ofertas De las compañias");
 			boxsize();
 
 			comp = bd.MostrarComp();
-			JPanel panelcaso2 = new JPanel(new GridLayout(comp.size()+2, 1));
+			JPanel panelcaso2 = new JPanel(new GridLayout(comp.size() + 2, 1));
 			Vector<JLabel> botones = new Vector<JLabel>();
 			for (int i = 0; i < comp.size(); i++) {
 				botones.add(i, new JLabel(comp.get(i).toString()));
@@ -82,7 +82,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 			comp = bd.MostrarComp();
 			Collections.sort(comp, new OrdenarPrecio());
 
-			JPanel panelcaso2 = new JPanel(new GridLayout(comp.size()+2, 1));
+			JPanel panelcaso2 = new JPanel(new GridLayout(comp.size() + 2, 1));
 
 			Vector<JLabel> botones = new Vector<JLabel>();
 			for (int i = 0; i < comp.size(); i++) {
@@ -106,7 +106,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 			comp = bd.MostrarComp();
 			Collections.sort(comp, new OrdenarPermanencia());
 
-			JPanel panelcaso2 = new JPanel(new GridLayout(comp.size()+2, 1));
+			JPanel panelcaso2 = new JPanel(new GridLayout(comp.size() + 2, 1));
 			Vector<JLabel> botones = new Vector<JLabel>();
 
 			for (int i = 0; i < comp.size(); i++) {
@@ -128,7 +128,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 			Vector<JButton> boton = new Vector<JButton>();
 			compa = bd.ListarComp();
 
-			JPanel panelcaso2 = new JPanel(new GridLayout(compa.size()+1, 1));
+			JPanel panelcaso2 = new JPanel(new GridLayout(compa.size() + 1, 1));
 
 			for (int i = 0; i < compa.size(); i++) {
 				boton.add(i, new JButton(compa.get(i).getNombre()));
@@ -156,10 +156,8 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 		} else if (e.getSource() == btn6) {
 
-			
 			menubusqueda(sal);
-			
-			
+
 		} else if (e.getSource() == btn7) {
 			System.out.println("Opc 7");
 		} else if (e.getSource() == btn8) {
@@ -240,60 +238,53 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 	public void menubusqueda(JButton sal) {
 		JPanel panelBusqueda = new JPanel(new GridLayout(4, 1));
-		JLabel part1 = new JLabel("Introduzca el minimo de megas"); 
+		JLabel part1 = new JLabel("Introduzca el minimo de megas");
 		boxsize();
 		panelBusqueda.add(part1);
 		Vector<JTextField> text = new Vector<JTextField>();
-		
-		
-		
+
 		setTitle("Seleccione el número de megas");
 		// Caja de texto de búsqueda
 		JTextField cajaTexto = new JTextField();
 		cajaTexto.setPreferredSize(new Dimension(300, 30));
 		panelBusqueda.add(cajaTexto, BorderLayout.CENTER);
 		text.add(cajaTexto);
-		
-		
+
 		JLabel part2 = new JLabel("Introduzca el maximo de megas");
 		panelBusqueda.add(part2);
-		
+
 		JTextField cajaTexto2 = new JTextField();
 		cajaTexto.setPreferredSize(new Dimension(300, 30));
 		panelBusqueda.add(cajaTexto2, BorderLayout.CENTER);
 		text.add(cajaTexto2);
-		
-	
+
 		JButton botonBusqueda = new JButton("Buscar");
 		panelBusqueda.add(botonBusqueda);
-		
-      	sal = new JButton("Salida");
-		botonBusqueda.addActionListener(new ActionListener(){
-       	 
-       	 
+
+		sal = new JButton("Salida");
+		botonBusqueda.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				String textoBusqueda = cajaTexto.getText();
-		      	String textoBusqueda2 = cajaTexto2.getText();
-		      	
-				Vector<oferta> bus = bd.BusquedaMegas(textoBusqueda, textoBusqueda2);
-				JPanel panelBusqueda = new JPanel(new GridLayout(bus.size()+1, 1));
+				String textoBusqueda2 = cajaTexto2.getText();
 				setTitle("Aqui se muestran los megas entre " + textoBusqueda + " y " + textoBusqueda2);
+				Vector<oferta> bus = bd.BusquedaMegas(textoBusqueda, textoBusqueda2);
+				JPanel panelBusqueda = new JPanel(new GridLayout(bus.size() + 1, 1));
+				
 				boxsize();
 				Vector<JLabel> ofer = new Vector<JLabel>();
 				for (int i = 0; i < bus.size(); i++) {
-					ofer.add(new JLabel (bus.get(i).toString()));
+					ofer.add(new JLabel(bus.get(i).toString()));
 				}
-				
+
 				for (int i = 0; i < ofer.size(); i++) {
 					panelBusqueda.add(ofer.get(i));
 				}
-				JButton salida=new JButton("<- Atras");
-				VolverAtras(panelBusqueda, salida );
-				
-				
-				
+				JButton salida = new JButton("<- Atras");
+				VolverAtras(panelBusqueda, salida);
+
 			}
-       });
+		});
 		Limpieza(panelBusqueda, sal);
 	}
 
@@ -314,6 +305,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 			}
 		});
 	}
+
 	public void VolverAtras(JPanel panelcaso2, JButton sal) {
 
 		panelcaso2.add(sal);

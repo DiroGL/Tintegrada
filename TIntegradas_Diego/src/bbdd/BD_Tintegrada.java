@@ -102,4 +102,5 @@ public class BD_Tintegrada extends BD_Conector {
 
 	}
 
+
 }

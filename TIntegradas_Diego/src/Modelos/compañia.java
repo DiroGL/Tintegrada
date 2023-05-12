@@ -12,6 +12,12 @@ public class compañia {
 		this.forma_de_pago = forma_de_pago;
 		this.telefono = telefono;
 	}
+	public String getForma_de_pago() {
+		return forma_de_pago;
+	}
+	public int getTelefono() {
+		return telefono;
+	}
 	public String getNombre() {
 		return nombre;
 	}

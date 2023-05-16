@@ -25,9 +25,62 @@ public class MenuGUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// Creamos el panel principal
-		JPanel panelPrincipal = new JPanel(new GridLayout(10, 1));
+		JPanel panelPrincipal = new JPanel(new GridLayout(3,2));
+		JLabel usuario, contra;
+		JTextField user = new JTextField(), pass = new JTextField();
+		
+	
+		usuario = new JLabel("Introduzca el usuario");
+		contra = new JLabel("Introduzca contraseña del usuario");
+	
+		JButton IniSes = new JButton("Iniciar Sesion");
+		JButton CreSes = new JButton("Crear Usuario");
+		
+		panelPrincipal.add(usuario);
+		panelPrincipal.add(user);
+		panelPrincipal.add(contra);
+		panelPrincipal.add(pass);
+		panelPrincipal.add(IniSes);
+		panelPrincipal.add(CreSes);
+		
+		IniSes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Boolean inic= bd.IniSes(user.getText(),pass.getText());
+				if (inic == null) {
+					JOptionPane.showMessageDialog(null, "EL USUARIO INTRODUCIDO NO EXISTE");
+				}else if(inic) {
+					getContentPane().removeAll();
+					getContentPane().revalidate();
+					getContentPane().repaint();
+					Menu();
+				}else {
+					JOptionPane.showMessageDialog(null, "EL CREDENCIALES INCORRECTAS");
+				}
+				
+			}
+		});
+		CreSes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getContentPane().removeAll();
+				getContentPane().revalidate();
+				getContentPane().repaint();
+				CrearUsuario();
+				
+				
+			}
+		});
+		
+		
+		
+		// Añadimos el panel principal al JFrame
+			getContentPane().add(panelPrincipal);
 
-		Menu();
+		// Hacemos visible la interfaz gráfica
+			setVisible(true);
 
 	}
 
@@ -213,7 +266,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// Creamos el panel principal
-		JPanel panelPrincipal = new JPanel(new GridLayout(10, 1));
+		JPanel panelPrincipal = new JPanel(new GridLayout(9, 1));
 
 		btn1 = new JButton("Ver las compañias");
 		btn2 = new JButton("Ofertas de compañías");
@@ -345,6 +398,99 @@ public class MenuGUI extends JFrame implements ActionListener {
 				menubusqueda(sal);
 			}
 		});
+	}
+	public void CrearUsuario() {
+		setTitle("DevelopersClub");
+		boxsize();
+		setLocationRelativeTo(null);
+		JPanel panelPrincipal = new JPanel(new GridLayout(7,2));
+		JLabel DNI, nom, ape,tel, corr,pass;
+		JTextField pdni= new JTextField(),pnom= new JTextField();
+		JTextField pape = new JTextField(),ptel= new JTextField()
+				,pcorr= new JTextField(),ppass= new JTextField();
+		JButton crear = new JButton("Crear"), volver = new JButton("<- Volver");
+		DNI= new JLabel("Introduce DNI");
+		nom= new JLabel("Introduce nombre");
+		ape= new JLabel("Introduce apellidos");
+		tel= new JLabel("Introduce telefono");
+		corr= new JLabel("Introduce correo");
+		pass= new JLabel("Introduce Contraseña");
+		
+		panelPrincipal.add(DNI);
+		panelPrincipal.add(pdni);
+		panelPrincipal.add(nom);
+		panelPrincipal.add(pnom);
+		panelPrincipal.add(ape);
+		panelPrincipal.add(pape);
+		panelPrincipal.add(tel);
+		panelPrincipal.add(ptel);
+		panelPrincipal.add(corr);
+		panelPrincipal.add(pcorr);
+		panelPrincipal.add(pass);
+		panelPrincipal.add(ppass);
+		panelPrincipal.add(crear);
+		panelPrincipal.add(volver);
+		
+		
+		
+		
+		crear.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				
+				
+					int creacion = bd.CerSes(pdni.getText(), pnom.getText(), pape.getText(),Integer.parseInt(ptel.getText()), pcorr.getText(), ppass.getText());
+					if (creacion == -1) {
+						JOptionPane.showMessageDialog(null, "Falta el nombre de usuario");
+					}else if(creacion == -2){
+						
+						JOptionPane.showMessageDialog(null, "Falta la contraseña");
+						
+					}else if(creacion == -3){
+						
+						JOptionPane.showMessageDialog(null, "Falta la DNI");
+						
+					}else if(creacion == -4){
+						JOptionPane.showMessageDialog(null, "La longitud del DNI es incorrecta");
+						
+					}else if(creacion == 0) {
+						JOptionPane.showMessageDialog(null, "Error 1, LLame a administrador del sistema");
+					}
+					
+					else if(creacion == 1) {
+						JOptionPane.showMessageDialog(null, "Usuario Creado correctamente");
+						setVisible(false);
+						new MenuGUI();
+					}else {
+						
+						JOptionPane.showMessageDialog(null, "Error 2, LLame a administrador del sistema");
+						
+						
+		
+				}
+					
+				
+				
+			}
+		});
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+				new MenuGUI();
+			}
+		});
+		
+		
+		
+		getContentPane().add(panelPrincipal);
+		setVisible(true);
+		
 	}
 
 }

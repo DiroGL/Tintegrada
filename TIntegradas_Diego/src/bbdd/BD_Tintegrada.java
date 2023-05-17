@@ -1,5 +1,6 @@
 package bbdd;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -75,12 +76,12 @@ public class BD_Tintegrada extends BD_Conector {
 		}
 
 	}
-	public Vector<oferta> BusquedaMegas(String megasmax, String megasmin) {
+	public Vector<oferta> BusquedaMegas(String megasmin, String megasmax) {
 		
-		if (megasmax == null) {
+		if (megasmax.equalsIgnoreCase("")) {
 			megasmax = "100000000";
 		}
-		if (megasmin == null) {
+		if (megasmin.equalsIgnoreCase("")) {
 			megasmin = "0";
 		}
 		String cadena = "SELECT * FROM ofertas WHERE Nmegas BETWEEN " + Integer.parseInt(megasmin) +" and " + Integer.parseInt(megasmax);
@@ -100,6 +101,63 @@ public class BD_Tintegrada extends BD_Conector {
 			return null;
 		}
 
+	}
+	public Boolean IniSes(String usu, String pass) {
+		String passw = "";
+		if (usu.equalsIgnoreCase("")){
+			return null;
+		}
+		if (pass.equalsIgnoreCase("")) {
+			return null;
+		}
+		String cadena = "Select * FROM usuarios WHERE nombre LIKE '"+usu+"'";
+		try {
+			this.abrir();
+			s = c.createStatement();
+			reg = s.executeQuery(cadena);
+			if (reg.next()) {
+				passw = reg.getString("password");
+			}
+			
+			s.close();
+			this.cerrar();
+			
+			if (passw.equalsIgnoreCase(pass)) {
+				return true;
+			}else {
+				return false;
+			}
+
+		} catch (SQLException e) {
+			this.cerrar();
+			return null;
+		}
+	}
+	
+	public int CerSes(String dni,String nom, String ape, int tel,String corr, String pass) {
+		if (nom.equalsIgnoreCase("")) {
+			return -1;
+		}
+		if (pass.equalsIgnoreCase("")) {
+			return -2;
+		}
+		if (dni.equalsIgnoreCase("")) {
+			return -3;
+		}
+		if (dni.length() > 9) {
+			return -4;
+		}
+		String cadena = "INSERT INTO USUARIOS VALUES('"+dni+"','"+nom+"','"+ape+"',"+tel+",'"+corr+"','"+pass+"')";
+		try {
+			this.abrir();
+			s = c.createStatement();
+			s.executeUpdate(cadena);
+			return 1;
+		} catch (SQLException e) {
+			this.cerrar();
+			return 0;
+		}
+		
 	}
 
 }

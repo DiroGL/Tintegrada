@@ -117,7 +117,8 @@ public class MenuGUI extends JFrame implements ActionListener {
 		} else if (e.getSource() == btn2) {
 
 			setTitle("Ofertas De las compañias");
-			boxsize();
+			setSize(800, 600);
+			setLocation(25, 100);
 
 			comp = bd.MostrarComp();
 			JPanel panelcaso2 = new JPanel(new GridLayout(comp.size() + 2, 1));
@@ -135,7 +136,8 @@ public class MenuGUI extends JFrame implements ActionListener {
 		} else if (e.getSource() == btn3) {
 
 			setTitle("Precios ordenados en su máxima tarifa");
-			boxsize();
+			setSize(800, 600);
+			setLocation(25, 100);
 
 			comp = bd.MostrarComp();
 			Collections.sort(comp, new OrdenarPrecio());
@@ -159,7 +161,8 @@ public class MenuGUI extends JFrame implements ActionListener {
 		} else if (e.getSource() == btn4) {
 
 			setTitle("Precios ordenados de las ofertas por Permanencia");
-			boxsize();
+			setSize(800, 600);
+			setLocation(25, 100);
 
 			comp = bd.MostrarComp();
 			Collections.sort(comp, new OrdenarPermanencia());
@@ -198,7 +201,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 				boton.get(i).addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent e) {
-
+						
 						JOptionPane.showMessageDialog(null, tar.toString());
 
 					}
@@ -256,13 +259,14 @@ public class MenuGUI extends JFrame implements ActionListener {
 	}
 
 	public void boxsize() {
-		setSize(1920, 1080);
+		setSize(800, 600);
+		setLocationRelativeTo(null);
 	}
 
 	public void Menu() {
 		setTitle("Menu de opciones");
 		boxsize();
-		setLocationRelativeTo(null);
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// Creamos el panel principal
@@ -313,7 +317,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 	}
 
 	public void menubusqueda(JButton sal) {
-		JPanel panelBusqueda = new JPanel(new GridLayout(4, 1));
+		JPanel panelBusqueda = new JPanel(new GridLayout(3, 2));
 		JLabel part1 = new JLabel("Introduzca el minimo de megas");
 		boxsize();
 		panelBusqueda.add(part1);
@@ -333,11 +337,14 @@ public class MenuGUI extends JFrame implements ActionListener {
 		cajaTexto.setPreferredSize(new Dimension(300, 30));
 		panelBusqueda.add(cajaTexto2, BorderLayout.CENTER);
 		text.add(cajaTexto2);
-
+		
+		sal = new JButton("Menu");
+		Limpieza(panelBusqueda, sal);
+		
 		JButton botonBusqueda = new JButton("Buscar");
 		panelBusqueda.add(botonBusqueda);
 
-		sal = new JButton("Menu");
+		
 		botonBusqueda.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -347,7 +354,8 @@ public class MenuGUI extends JFrame implements ActionListener {
 				Vector<oferta> bus = bd.BusquedaMegas(textoBusqueda, textoBusqueda2);
 				JPanel panelBusqueda = new JPanel(new GridLayout(bus.size() + 1, 1));
 				
-				boxsize();
+				setSize(800, 600);
+				setLocation(25, 100);
 				Vector<JLabel> ofer = new Vector<JLabel>();
 				for (int i = 0; i < bus.size(); i++) {
 					ofer.add(new JLabel(bus.get(i).toString()));
@@ -361,7 +369,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 
 			}
 		});
-		Limpieza(panelBusqueda, sal);
+		
 	}
 
 	public void Limpieza(JPanel panelcaso2, JButton sal) {
@@ -428,8 +436,9 @@ public class MenuGUI extends JFrame implements ActionListener {
 		panelPrincipal.add(pcorr);
 		panelPrincipal.add(pass);
 		panelPrincipal.add(ppass);
-		panelPrincipal.add(crear);
 		panelPrincipal.add(volver);
+		panelPrincipal.add(crear);
+		
 		
 		
 		

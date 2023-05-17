@@ -49,7 +49,7 @@ public class CompaniasMenu {
  
     public CompaniasMenu() {
         initialize();
-        conexionBD = new ConexionBD("tintegrador");
+        conexionBD = new ConexionBD("tintegrada");
     }
 
     /**
@@ -127,7 +127,7 @@ public class CompaniasMenu {
         searchPanel.add(btnBuscar);
         btnBuscar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //buscarCompanias(searchTextField.getText());
+               // buscarCompanias(searchTextField.getText());
             }
         });
 
@@ -312,7 +312,12 @@ public class CompaniasMenu {
     /**
      * Carga las compañías desde la base de datos y las muestra en la tabla.
      */
-
+	private void buscarCompañia() {
+		
+		
+		
+		
+	}
     private void editarCompania() {
         // Obtener la fila seleccionada
         int selectedRow = table.getSelectedRow();
@@ -326,7 +331,7 @@ public class CompaniasMenu {
         String nombreActual = (String) table.getValueAt(selectedRow, 0);
         String cifActual = (String) table.getValueAt(selectedRow, 1);
         String direccionActual = (String) table.getValueAt(selectedRow, 2);
-
+        
         // Crear el panel de entrada de datos
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridBagLayout());

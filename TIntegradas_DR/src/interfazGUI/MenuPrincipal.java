@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import conexionSQL.ConexionBD;
+import entitiesBBDD.Compañias;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -87,10 +88,11 @@ public class MenuPrincipal extends JFrame {
         if (result == JOptionPane.YES_OPTION) {
             switch (option) {
                 case "Compañías":
+                	openCompaniasMenu();
                     break;
                 case "Ofertas":
                     OfertasMenu ofertasMenu = new OfertasMenu();
-                    ofertasMenu.OfertasMenu();
+                   // ofertasMenu.OfertasMenu();
                     break;
                 case "Precontrato":
                     PrecontratoMenu precontratoMenu = new PrecontratoMenu();
@@ -109,7 +111,8 @@ public class MenuPrincipal extends JFrame {
 
     private void openCompaniasMenu() {
         JOptionPane.showMessageDialog(this, "Abriendo el menú de Compañías");
-      
+        CompaniasMenu c = new CompaniasMenu();
+        c.initialize();
     }
 
     private void openOfertasMenu() {

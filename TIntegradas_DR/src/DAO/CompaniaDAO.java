@@ -11,7 +11,7 @@ import conexionSQL.ConexionBD;
 import entitiesBBDD.Compañias;
 
 public class CompaniaDAO{
-	ConexionBD conexionBD;
+	private ConexionBD conexionBD;
 	public CompaniaDAO() {
     	//New Pull
     		conexionBD = new ConexionBD("tintegrada");    
@@ -91,7 +91,7 @@ public class CompaniaDAO{
         List<Compañias> companias = new ArrayList<>();
 
         try {
-            String query = "SELECT * FROM compañias WHERE nombre LIKE ?";
+            String query = "SELECT * FROM compañias WHERE ncom LIKE ?";
             PreparedStatement statement = conexionBD.abrirConexion().prepareStatement(query);
             statement.setString(1, "%" + filtro + "%");
 
@@ -117,13 +117,14 @@ public class CompaniaDAO{
     }
     public boolean eliminarCompania(String nombre) {
         try {
-            String query = "DELETE FROM compañias WHERE nombre=?";
+            String query = "DELETE FROM compañias WHERE cobertura=?";
+            System.out.println("EL nombre a borrar va a ser"+nombre);
             PreparedStatement statement = conexionBD.abrirConexion().prepareStatement(query);
             statement.setString(1, nombre);
 
             int rowsDeleted = statement.executeUpdate();
             statement.close();
-
+            
             return rowsDeleted > 0;
         } catch (SQLException e) {
             e.printStackTrace();

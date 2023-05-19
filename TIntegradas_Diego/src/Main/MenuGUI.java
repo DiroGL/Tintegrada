@@ -48,7 +48,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Boolean inic= bd.IniSes(user.getText(),pass.getText());
-				if (inic == null) {
+				if (inic == null) {	
 					JOptionPane.showMessageDialog(null, "EL USUARIO INTRODUCIDO NO EXISTE");
 				}else if(inic) {
 					getContentPane().removeAll();

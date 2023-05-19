@@ -13,7 +13,7 @@ import Orden.*;
 
 public class MenuGUI extends JFrame implements ActionListener {
 
-	private JButton btn1, btn2, btn3, btn4, btn5, btn6, btn8, btn9, btn10;
+	private JButton btn1, btn2, btn3, btn4, btn5, btn6, btn8, btn9, btn10,btn11;
 
 	BD_Tintegrada bd = new BD_Tintegrada("tintegrada");
 
@@ -270,7 +270,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		// Creamos el panel principal
-		JPanel panelPrincipal = new JPanel(new GridLayout(9, 1));
+		JPanel panelPrincipal = new JPanel(new GridLayout(10, 1));
 
 		btn1 = new JButton("Ver las compañias");
 		btn2 = new JButton("Ofertas de compañías");
@@ -280,7 +280,9 @@ public class MenuGUI extends JFrame implements ActionListener {
 		btn6 = new JButton("Buscar por megas");
 		btn8 = new JButton("Telefono fijo");
 		btn9 = new JButton("Información de forma de pago");
+		btn11 = new JButton("Cerrar sesion");		
 		btn10 = new JButton("Salir");
+		
 
 		// Asignamos un ActionListener a cada botón
 		btn1.addActionListener(this);
@@ -296,6 +298,11 @@ public class MenuGUI extends JFrame implements ActionListener {
 				System.exit(0);
 			}
 		});
+		btn11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new MenuGUI();
+			}
+		});
 
 		// Añadimos los botones al panel principal
 		panelPrincipal.add(btn1);
@@ -306,6 +313,7 @@ public class MenuGUI extends JFrame implements ActionListener {
 		panelPrincipal.add(btn6);
 		panelPrincipal.add(btn8);
 		panelPrincipal.add(btn9);
+		panelPrincipal.add(btn11);
 		panelPrincipal.add(btn10);
 
 		// Añadimos el panel principal al JFrame
